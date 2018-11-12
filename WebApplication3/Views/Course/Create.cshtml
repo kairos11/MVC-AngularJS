@@ -1,0 +1,83 @@
+﻿@model WebApplication3.Models.Course
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Course</h4>
+        <hr />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CourseName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CourseName, new { htmlAttributes = new { @class = "form-control", id = "name", tabindex = 1, accesskey=1 } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" id="create" value="Create [alt + s]" class="btn btn-default" tabindex=2 accesskey="S"/>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+
+    <link href="~/Content/sweetalert/sweet-alert.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert"></script>
+
+    <script type="text/javascript">
+
+        @if (TempData["Message"] != null)
+                    {
+            <text>
+        $(window).load(function () {
+            $(document).ready(function () {
+                                swal({ title: "Message", text: "@TempData["Message"]", type: "success" });
+                            });
+                        });
+        </text>
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#name').keyup(function () {
+                $(this).val($(this).val().toUpperCase());
+            });
+            $("#create").click(function () {
+                if ($("#name").val() == "") {
+                    swal("Warning!", "There is no value in course", "warning")
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            });
+        });
+
+    </script>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

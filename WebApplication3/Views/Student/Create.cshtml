@@ -1,0 +1,147 @@
+﻿@model WebApplication3.Models.Student
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Student</h4>
+        <hr />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @id = "name", accessKey = "1", tabIndex = 1 } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control date-picker", @id = "dob", accessKey = "2", tabIndex = 2 } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmailId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control", @id = "email", accessKey = "3", tabIndex = 3 } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @id = "address", accessKey = "4", tabIndex = 4 } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", @id = "city", accessKey = "5", tabIndex = 5 } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CourseId, "CourseId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("CourseId", null, htmlAttributes: new { @class = "form-control", @id = "courseId", accessKey = "6", tabIndex = 6 })
+            </div>
+        </div>
+
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+
+                <input type="submit" id="create" value="Create[alt + s]" class="btn btn-default" accesskey="S" tabindex=7 />
+
+            </div>
+        </div>
+    </div>
+
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet"/>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src = "~/Scripts/jquery-1.12.4.min.js" ></script >
+    <script src = "~/Scripts/jquery.validate.min.js" ></script >
+    <script src = "~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+
+    <link href="~/Content/sweetalert/sweet-alert.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert"></script>
+
+
+    @*<script type="text/javascript">
+        $(function () {
+            $(".date-picker").date({
+                dateFormat: 'dd-MM-yy'
+            });
+        });
+    </script>*@
+
+    <script type="text/javascript">
+    $(function () {
+        $('#datetimepicker6').datetimepicker();
+        $('#datetimepicker7').datetimepicker({
+            useCurrent: false //Important! See issue #1075
+        });
+        $("#dob").on("dp.change", function (e) {
+            $('#dob').data("DateTimePicker").minDate(e.date);
+        });
+        $("#dob").on("dp.change", function (e) {
+            $('#dob').data("DateTimePicker").maxDate(e.date);
+        });
+    });
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            $('#name').keyup(function () {
+                $(this).val($(this).val().toUpperCase());
+            });
+            $('#address').keyup(function () {
+                $(this).val($(this).val().toUpperCase());
+            });
+            $('#city').keyup(function () {
+                $(this).val($(this).val().toUpperCase());
+            });
+            $('#create').click(function () {
+                if($('#name').val() == ""){
+                    swal("Warning!","There is no value on the name field", "warning")
+                    .then(function ()
+                    {
+                        $('#name').focus()
+                    })
+                    return false;
+                }
+                else if($('#city').val() == "") {
+                    swal("Warning!","There is no value on the city field", "warning")
+                    .then(function ()
+                    {
+                        $('#city').focus()
+                    })
+                    return false;
+                }
+            })
+        });
+    </script>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,50 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div ng-app="WebApp3" ng-controller="SyllabusController" data-ng-init="loadrecord(@Convert.ToInt32(Request.QueryString["id"]))">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+                    <div class="form-group">
+                        <br />
+                        <input type="hidden" ng-model="record.ID" class="form-control" />
+                        
+                        <label>Course</label>
+                        <input type="hidden"  ng-model="record.CourseId" class="form-control" />
+                        <input type="hidden" ng-model="record.CourseName" class="form-control" />
+
+                        <select ng-model='record.CourseId' data-ng-options="c.CourseId as c.CourseName for c in courses" class="form-control" tabindex="1" accesskey="1"><option value="">---Select Course---</option></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Subjec</label>
+                        <input type="hidden" ng-model="record.SubjectName" class="form-control" />
+                        <input type="hidden" ng-model="record.SubjectId" class="form-control" />
+                        <select ng-model='record.SubjectId' data-ng-options="s.SubjectId as s.SubjectName for s in subjects" class="form-control" tabindex="2s" accesskey="2"><option value="">---Select Subject---</option></select>
+                    </div>
+                  
+                    <div class="form-group">
+                        <input type="button" class="btn btn-primary" ng-click="Update_Data()" value="{{btntext}}" tabindex="1" accesskey="s" />
+                    </div>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/Angular/SyllabusAngular.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+﻿
+@*@{
+    Layout = null;
+}*@
+
+@*<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    
+</head>*@
+
+@{
+    ViewBag.Title = "Index";
+}
+    
+<body>
+    <div ng-app="WebApp3" ng-controller="SyllabusController" ng-init="courseSyllabus()">
+        <h4>Syllabus</h4>
+        <hr />
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-sm-1"></div>
+                <div class="col-sm-11">
+
+                    <div class="form-group">
+                        <label>CourseName</label>
+                        
+                        @*<input type="text" ng-model="register.CourseId" class="form-control" />*@
+                        <select ng-model='register.CourseId' data-ng-options="c.CourseId as c.CourseName for c in courses" tabindex="1" accesskey="1"><option value="">---Select Course---</option></select>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>SubjectName</label>
+
+                        @*<input type="text" ng-model="register.SubjectId" class="form-control" />*@
+                        <select ng-model='register.subjectId' data-ng-options="s.SubjectId as s.SubjectName for s in subjects" tabindex="2" accesskey="2"><option value="">---Select Subject---</option></select>
+                    
+                    </div>
+
+                    <div class="form-group">
+                        <input type="button" class="btn-primary" ng-click="savedata()" value="{{btntext}}" tabindex="3" accesskey="s"/>
+                    </div>
+
+                    <table id="tblSyllabus" class="table" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th style="width:100px">ID</th>
+                            <th style="width:100px">Course</th>
+                            <th style="width:100px">Subject</th>
+                        </tr>
+                        <tbody ng-repeat="cs in courseSyllabus">
+                            <tr>
+                                <td hidden="hidden" ng-model='cs.ID'><span>{{cs.ID}}</span></td>
+                                <td>
+                                    
+                                    <span ng-hide="s.EditMode">{{cs.CourseName}}</span>
+                                    <input type="text" ng-model="cs.CourseName" ng-show="m.EditMode" />
+
+                                </td>
+                                <td>
+                                    
+                                    <span ng-hide="s.EditMode">{{cs.SubjectName}}</span>
+                                    <input type="text" ng-model="cs.SubjectName" ng-show="m.EditMode" />
+
+                                </td>
+                                <td>
+                                    
+                                    <a href="/Syllabus/Edit?id={{cs.ID}}">Edit</a>
+                                    <a class="ui-icon-trash" title="Delete" href="javascript:void(0)" ng-click="Delete(cs.ID)">Delete</a>  
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+                @*<div class="col-sm-2"></div>*@
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/Angular/SyllabusAngular.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+    <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+    <script type="text/javascript"></script>
+
+</body>
+</html>
