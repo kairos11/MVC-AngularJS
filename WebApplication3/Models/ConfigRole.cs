@@ -16,6 +16,7 @@ namespace System.Web.Mvc
             string CurrentUserRole = db.Role.Where(a => a.RoleId == GlobalVariables.UserLoginRole).Select(a => a.RoleName).FirstOrDefault();
             //string CurrentUser = db.LogIn.Where(b => b.UserLogin == GlobalVariables.UserLogName).Select(b => b.UserLogin).First();
             return CurrentUserRole;
+            //return CurrentUser;
         }
 
     }

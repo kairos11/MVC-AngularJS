@@ -188,6 +188,14 @@
     <Compile Include="Migrations\201809210251055_Initial.Designer.cs">
       <DependentUpon>201809210251055_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811120441485_InitialCreateUpdate.cs" />
+    <Compile Include="Migrations\201811120441485_InitialCreateUpdate.Designer.cs">
+      <DependentUpon>201811120441485_InitialCreateUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901020829091__Migration2019.cs" />
+    <Compile Include="Migrations\201901020829091__Migration2019.Designer.cs">
+      <DependentUpon>201901020829091__Migration2019.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CheckAuthorization.cs" />
@@ -1126,6 +1134,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809210251055_Initial.resx">
       <DependentUpon>201809210251055_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811120441485_InitialCreateUpdate.resx">
+      <DependentUpon>201811120441485_InitialCreateUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901020829091__Migration2019.resx">
+      <DependentUpon>201901020829091__Migration2019.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
